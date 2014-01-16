@@ -96,7 +96,7 @@ $("#datepicker").datepicker();
       </ul>
    </li>
    <li><?php 
-  
+   if($_SESSION['varia'] === 1)
         echo $this->Html->link("Cerrar Sesión", array('controller'=>'users','action' => 'logout'), array('escape' => false));?></span></a></li>
 </ul>
 </div>

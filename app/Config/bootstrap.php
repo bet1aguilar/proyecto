@@ -26,7 +26,6 @@
 
 // Setup a 'default' cache configuration for use in the application.
 Cache::config('default', array('engine' => 'File'));
-CakePlugin::load('AclExtras');
 
 #CakePlugin::load('MeioUpload');
 /**

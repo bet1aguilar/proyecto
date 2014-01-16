@@ -34,26 +34,33 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
     //...
 
-   public $components = array(
-        'Acl',
+    public $components = array(
+        'Session',
         'Auth' => array(
-            'authorize' => array(
-                'Actions' => array('actionPath' => 'controllers')
-            )
-        ),
-        'Session'
+            'loginRedirect' => array('controller' => 'cheques', 'action' => 'index'),
+            'logoutRedirect' => array('controller' => 'users', 'action' => 'login')
+        )
     );
-    public $helpers = array('Html', 'Form', 'Session');
 
     public function beforeFilter() {
-        //Configure AuthComponent
-        $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
-        $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
-        $this->Auth->loginRedirect = array('controller' => 'cheques', 'action' => 'index');
+        //$this->Auth->allow('index', 'view');
+        $this->Auth->authError = 'No tienes permiso para entrar a este enlace'; 
     }
-  
-    function logout() {
-        $this->redirect($this->Auth->logout());
+    //...
+    public function isAuthorized($user) {
+    // Admin can access every action
+    if (isset($user['role_id']) && $user['role_id'] === 1) {
+        $_SESSION['varia']=1;
+        return true;
+    }else{
+        if (isset($user['role_id']) && $user['role_id'] === 2) {
+            $_SESSION['varia']=1;
+            return true;
+        }
+        
     }
-    
+       
+    // Default deny
+    return false;
+}
 }
