@@ -36,9 +36,8 @@ class ChequesController extends AppController {
                     
                     if($this->data['Cheque']['selector']=="1"){
                         $valor = $this->data['search_text1'];
-                        debug($valor);
-                        
-                        #debug($busca);
+                       $yabusco=1;
+                       $this->request->data['search_text1']='';
                          $this->set('cheques',  
 
                         $this->paginate('Cheque', array('or' => 
@@ -50,19 +49,38 @@ class ChequesController extends AppController {
                            'Cliente.nombre LIKE'=>'%'.$valor.'%',
                             'Cliente.apellido LIKE'=>'%'.$valor.'%',
                            'Cliente.apodo LIKE'=>'%'.$valor.'%'
-                            ),'and'=>array()))); 
+                            ),'and'=>array('or'=>array(array('Cheque.cobrado'=>'1'),
+                                    array('Cheque.cobrado'=>'0')))))); 
+                         $this->set(compact('yabusco'));
                     }
                 else{
-                    debug($this->data);
                     
+                    $yabusco=0;
+                    if(!$this->data['Cheque']['search_text']==''){
+                        
+                        $fecha = new DateTime($this->data['Cheque']['search_text']);
+                        $fecha = $fecha->format('Y-m-d');
+                        $this->request->data['Cheque']['search_text']='';
+                        $this->set('cheques',$this->paginate('Cheque', array('or' => 
+                            array('DATE_FORMAT(Cheque.fechacobro,"%Y-%m-%d") LIKE' => '%'.$fecha.'%'
+                            ),'and'=>array('or'=>array(array('Cheque.cobrado'=>'1'),
+                                    array('Cheque.cobrado'=>'0')))))); 
+                        $this->set(compact('yabusco'));
+                    }
+                    else{
+                         $this->set('cheques', $this->paginate('Cheque',
+                                array('or'=>array(array('Cheque.cobrado'=>'1'),
+                                    array('Cheque.cobrado'=>'0')))));
+                     $this->set(compact('sumas','yabusco'));
+                    }
                 }
                  
                   }else{
-                      
+                      $yabusco=2;
                     $this->set('cheques', $this->paginate('Cheque',
                                 array('or'=>array(array('Cheque.cobrado'=>'1'),
                                     array('Cheque.cobrado'=>'0')))));
-                     $this->set(compact('sumas'));
+                     $this->set(compact('sumas','yabusco'));
                   }
 	 	
                

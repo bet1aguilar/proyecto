@@ -39,6 +39,10 @@ class Role extends AppModel {
  *
  * @var array
  */
+          public $actsAs = array('Acl' => array('type' => 'requester'));
+        public function parentNode() {
+        return null;
+    }
 	public $hasMany = array(
 		'User' => array(
 			'className' => 'User',
@@ -54,5 +58,8 @@ class Role extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+        
+      
 
+   
 }

@@ -1,2 +1,2 @@
-1389480560
-a:15:{i:0;s:6:"bancos";i:1;s:7:"capital";i:2;s:20:"cheque_estadocheques";i:3;s:14:"chequeinterese";i:4;s:7:"cheques";i:5;s:8:"clientes";i:6;s:7:"cuentas";i:7;s:13:"estadocheques";i:8;s:18:"gestiondecobranzas";i:9;s:9:"intereses";i:10;s:5:"pagos";i:11;s:12:"pagoterceros";i:12;s:5:"roles";i:13;s:9:"tipopagos";i:14;s:5:"users";}
+1389845418
+a:19:{i:0;s:4:"acos";i:1;s:4:"aros";i:2;s:9:"aros_acos";i:3;s:6:"bancos";i:4;s:7:"capital";i:5;s:20:"cheque_estadocheques";i:6;s:14:"chequeinterese";i:7;s:7:"cheques";i:8;s:8:"clientes";i:9;s:7:"cuentas";i:10;s:13:"estadocheques";i:11;s:18:"gestiondecobranzas";i:12;s:9:"intereses";i:13;s:5:"pagos";i:14;s:12:"pagoterceros";i:15;s:5:"roles";i:16;s:13:"solointereses";i:17;s:9:"tipopagos";i:18;s:5:"users";}

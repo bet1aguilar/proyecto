@@ -73,6 +73,7 @@ $("#datepicker").datepicker();
     
 
     </div> 
+       <?php if($yabusco==2 || $yabusco==0){ ?>
     <div id="search_box"> 
     <div style="float:left; width:100%; " id="fecha1">
     <?php 
@@ -92,6 +93,30 @@ echo $this->Form->label('Búsqueda') ?>
 </div> 
 
 </div> 
+       <?php }else{
+           
+           ?>
+       <div id="search_box"> 
+    <div style="float:left; width:100%; display: none;" id="fecha1">
+    <?php 
+
+echo $this->Form->label('Búsqueda por fecha') ?>
+<?php echo $this->Form->input('search_text', array('id'=>'datepicker','style' => 'width: 80%;', 'div'=> false,'label' => false,
+                                                    'placeholder'=>'Haz click aquí','readonly'=>'readonly')); ?> 
+<?php echo $this->Form->end('Buscar'); ?>      
+</div> 
+<div style="float:left; width:100%; " id="texto">
+    <?php 
+
+echo $this->Form->label('Búsqueda') ?>
+<?php echo $this->Form->input('search_text1', array('style' => 'width:80%;', 'div'=> false,'label' => false,
+                                                    'placeholder'=>'Ingrese Nro. cheque o banco o cliente, etc...  ')); ?> 
+<?php echo $this->Form->end('Buscar'); ?>      
+</div> 
+
+</div> 
+       <?php
+       } ?>
     </div>
 </form>
 

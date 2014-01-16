@@ -20,7 +20,8 @@ class RolesController extends AppController {
  *
  * @return void
  */
-	public function index() {$_SESSION['varia']=1;
+        
+	public function index() {
 		$this->Role->recursive = 0;
 		$this->set('roles', $this->Paginator->paginate());
 	}
@@ -32,7 +33,7 @@ class RolesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function view($id = null) {$_SESSION['varia']=1;
+	public function view($id = null) {
 		if (!$this->Role->exists($id)) {
 			throw new NotFoundException(__('Rol invalido'));
 		}
@@ -45,7 +46,7 @@ class RolesController extends AppController {
  *
  * @return void
  */
-	public function add() {$_SESSION['varia']=1;
+	public function add() {
 		if ($this->request->is('post')) {
 			$this->Role->create();
 			if ($this->Role->save($this->request->data)) {
@@ -88,12 +89,12 @@ class RolesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {$_SESSION['varia']=1;
+	public function delete($id = null) {
 		$this->Role->id = $id;
 		if (!$this->Role->exists()) {
 			throw new NotFoundException(__('Invalid role'));
 		}
-		$this->request->onlyAllow('post', 'delete');
+		//$this->request->onlyAllow('post', 'delete');
 		if ($this->Role->delete()) {
 			$this->Session->setFlash(__('The role has been deleted.'));
 		} else {

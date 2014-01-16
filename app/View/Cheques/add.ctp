@@ -31,8 +31,13 @@ $("#datepicker1").datepicker();
                         <th><?php echo $this->Form->input('filename',array('type'=>'file','label'=>'Imagen del Cheque')); ?></th>
                     </tr>
                     <tr>
+<<<<<<< HEAD
                         <th><?php echo $this->Form->input('fecharecibido',array('label'=>'Fecha de Recibido','id'=>'datepicker','type'=>'text','style'=>'width:50%;','placeholder'=>'Haz Click aquí','readonly'=>'readonly')); ?></th>
                         <th><?php echo $this->Form->input('fechacobro',array('label'=>'Fecha de Cobro','id'=>'datepicker1','type'=>'text','style'=>'width:50%;','placeholder'=>'Haz Click aquí','readonly'=>'readonly')); ?></th>
+=======
+                        <th><?php echo $this->Form->input('fecharecibido',array('label'=>'Fecha de Recibido','id'=>'datepicker','type'=>'text','style'=>'width:70%;','placeholder'=>'Haz Click aquí','readonly'=>'readonly')); ?></th>
+                        <th><?php echo $this->Form->input('fechacobro',array('label'=>'Fecha de Cobro','id'=>'datepicker1','type'=>'text','style'=>'width:70%;','placeholder'=>'Haz Click aquí','readonly'=>'readonly')); ?></th>
+>>>>>>> origin/master
                         <th><?php echo $this->Form->input('cobrado',array('options'=>array(
                                ''=>'Seleccione','1'=>'Por Cobrar','2'=>'Cobrado','0'=>'Devuelto'
                 ))); ?></th>
