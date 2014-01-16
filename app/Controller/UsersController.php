@@ -20,7 +20,11 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function index() {$_SESSION['varia']=1;
+   /*     function beforeFilter() {
+    parent::beforeFilter();
+    $this->Auth->allow = array('*');
+}*/
+	public function index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
 	}
@@ -33,20 +37,25 @@ class UsersController extends AppController {
  * @return void
  */
 	public function beforeFilter() {
-            parent::beforeFilter();
-            $this->Auth->allow('add');
-        }
-        public function login() {$_SESSION['varia']=1;
-            if ($this->request->is('post')) {
-                if ($this->Auth->login()) {
-                    return $this->redirect($this->Auth->redirect());
-                }
-                $this->Session->setFlash(__('Usuario y contraseña invalida'));
+    parent::beforeFilter();
+   
+     $this->Auth->fields = array(
+            'username' => 'username',
+            'password' => 'secretword'
+            );
+     $this->Auth->allow('login','logout');
+}
+        public function login() {
+        if ($this->request->is('post')) {
+            if ($this->Auth->login()) {
+                return $this->redirect($this->Auth->redirect());
             }
+            $this->Session->setFlash(__('Tu usuario o contraseña es incorrecta.'));
         }
-
-        public function logout() {$_SESSION['varia']=0;
-            return $this->redirect($this->Auth->logout());
+        }
+      
+        public function logout() {
+            $this->redirect($this->Auth->logout());
         }
         public function view($id = null) {
 		if (!$this->User->exists($id)) {
@@ -61,7 +70,7 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function add() {$_SESSION['varia']=1;
+	public function add() {
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
@@ -82,7 +91,7 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {$_SESSION['varia']=1;
+	public function edit($id = null) {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Usuario Invalido'));
 		}
@@ -108,7 +117,7 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {$_SESSION['varia']=1;
+	public function delete($id = null) {
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user'));
